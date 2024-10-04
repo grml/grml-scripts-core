@@ -18,6 +18,7 @@ Depends:
  dash,
  grml-etc-core,
  less,
+ libio-interface-perl,
  lockfile-progs,
  perl,
  screen,
