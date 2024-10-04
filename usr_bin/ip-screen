@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+# Filename:      ip-screen
+# Purpose:       print ip address of configured network interfaces
+# Authors:       grml-team (grml.org), (c) Chris Hofstaedtler <ch@grml.org>
+# Bug-Reports:   see http://grml.org/bugs/
+# License:       This file is licensed under the GPL v2.
+#********************************************************************************
+
+use strict;
+use IO::Interface::Simple;
+
+my @interfaces = IO::Interface::Simple->interfaces;
+my $found = 0;
+for my $if (@interfaces) {
+  next if $if->is_loopback;
+  print " | " if $found;
+  print $if->address;
+  $found = 1;
+}
+print "[ network n/a ]" unless $found;
+print "\n";
